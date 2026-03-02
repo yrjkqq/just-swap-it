@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "pnpm -F @demo/web dev"
+    "dev": "pnpm -F @demo/web dev",
+    "interview": "pnpm -F @demo/interview test",
+    "interview:watch": "pnpm -F @demo/interview test:watch"
   },
   "packageManager": "pnpm@10.2.1"
 }

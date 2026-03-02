@@ -1,6 +1,11 @@
 @import "tailwindcss";
+@source "../../../../packages/ui/src";
 
 @theme {
   --font-sans: "var(--font-geist-sans)", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "var(--font-geist-mono)", ui-monospace, monospace;
+}
+
+@utility btn-primary {
+  @apply cursor-pointer rounded-lg bg-blue-500 px-4 py-2 text-white hover:bg-blue-700;
 }

@@ -10,10 +10,7 @@ export const Button = ({
   onClick?: () => void;
 }) => {
   return (
-    <button
-      onClick={onClick}
-      className="cursor-pointer rounded-[5px] bg-[#0070f3] px-5 py-2.5 text-white border-none hover:bg-[#0060df]"
-    >
+    <button onClick={onClick} className="btn-primary">
       {children}
     </button>
   );
