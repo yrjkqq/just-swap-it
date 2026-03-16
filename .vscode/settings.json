@@ -1,0 +1,10 @@
+{
+  "python.languageServer": "Jedi",
+  "python.defaultInterpreterPath": "${workspaceFolder}/packages/learn-python/.venv/bin/python3",
+  "python.venvPath": "${workspaceFolder}/packages/learn-python",
+  "python.venvFolders": [".venv"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "cSpell.words": ["nums"]
+}
