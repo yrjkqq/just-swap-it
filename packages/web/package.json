@@ -1,12 +1,16 @@
 {
   "name": "@just-swap-it/web",
   "version": "0.1.0",
+  "type": "module",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:e2e": "node scripts/sync-synpress-cache.mjs && playwright test",
+    "test:e2e:ui": "node scripts/sync-synpress-cache.mjs && playwright test --ui",
+    "test:e2e:cache": "synpress test/wallet-setup",
     "postinstall": "node scripts/copy-sqlite-wasm.js"
   },
   "dependencies": {
@@ -32,9 +36,12 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@playwright/test": "^1.48.2",
+    "@synthetixio/synpress": "^4.1.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "dotenv": "^17.3.1",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "typescript": "^5"

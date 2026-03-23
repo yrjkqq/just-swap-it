@@ -46,3 +46,6 @@ packages/web/public/sqlite-wasm/
 
 # Python Virtual Environments
 .venv/
+packages/web/.cache-synpress
+packages/web/playwright-report
+packages/web/test-results

@@ -64,35 +64,35 @@ export default function AAWalletPage() {
           </h2>
           <button
             onClick={() => open()}
-            className="flex h-11 cursor-pointer items-center justify-center rounded-full bg-blue-600 px-6 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+            className="flex h-11 cursor-pointer items-center justify-center rounded-full bg-blue-600 px-6 text-sm font-medium text-white transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#111]"
           >
             {isWalletConnected
-              ? `已连接: ${eoaAddress?.slice(0, 6)}...${eoaAddress?.slice(-4)}`
+              ? `已连接: ${eoaAddress?.slice(0, 6)}…${eoaAddress?.slice(-4)}`
               : "🔗 连接钱包"}
           </button>
         </section>
 
         {/* Smart Account Info */}
-        {isWalletConnected && (
+        {isWalletConnected ? (
           <section className="flex flex-col gap-4 rounded-xl border border-[#eee] p-5 dark:border-[#222]">
             <h2 className="text-xs font-semibold tracking-widest text-[#999] uppercase dark:text-[#666]">
               Smart Account
             </h2>
 
-            {isInitializing && (
+            {isInitializing ? (
               <div className="flex items-center gap-2 text-sm text-[#999]">
-                <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-blue-500 border-t-transparent" />
-                正在初始化 Safe 智能账户...
+                <span className="inline-block h-4 w-4 animate-spin motion-reduce:animate-none rounded-full border-2 border-blue-500 border-t-transparent" />
+                正在初始化 Safe 智能账户…
               </div>
-            )}
+            ) : null}
 
-            {error && (
+            {error ? (
               <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
                 ❌ 初始化失败: {error}
               </div>
-            )}
+            ) : null}
 
-            {smartAccountAddress && (
+            {smartAccountAddress ? (
               <>
                 {/* EOA */}
                 <div className="flex flex-col gap-1">
@@ -101,7 +101,7 @@ export default function AAWalletPage() {
                     href={getExplorerUrl("address", eoaAddress!)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="break-all font-mono text-sm text-[#666] underline decoration-[#ddd] transition-colors hover:text-black dark:text-[#888] dark:decoration-[#444] dark:hover:text-white"
+                    className="break-all font-mono text-sm text-[#666] underline decoration-[#ddd] transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-[#888] dark:decoration-[#444] dark:hover:text-white"
                   >
                     {eoaAddress}
                   </a>
@@ -116,18 +116,18 @@ export default function AAWalletPage() {
                     href={getExplorerUrl("address", smartAccountAddress)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="break-all font-mono text-sm text-blue-600 underline decoration-blue-200 transition-colors hover:text-blue-800 dark:text-blue-400 dark:decoration-blue-800 dark:hover:text-blue-300"
+                    className="break-all font-mono text-sm text-blue-600 underline decoration-blue-200 transition-colors hover:text-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:text-blue-400 dark:decoration-blue-800 dark:hover:text-blue-300"
                   >
                     {smartAccountAddress}
                   </a>
                 </div>
               </>
-            )}
+            ) : null}
           </section>
-        )}
+        ) : null}
 
         {/* Send Transaction */}
-        {smartAccountAddress && (
+        {smartAccountAddress ? (
           <section className="flex flex-col gap-4 rounded-xl border border-[#eee] p-5 dark:border-[#222]">
             <h2 className="text-xs font-semibold tracking-widest text-[#999] uppercase dark:text-[#666]">
               发送测试交易
@@ -139,19 +139,19 @@ export default function AAWalletPage() {
             <button
               onClick={handleSendTx}
               disabled={isSending}
-              className="flex h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-black px-6 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#333] disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white dark:text-black dark:hover:bg-[#ddd]"
+              className="flex h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-black px-6 text-sm font-medium text-white transition-colors duration-200 hover:bg-[#333] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-900 focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-40 dark:bg-white dark:text-black dark:hover:bg-[#ddd] dark:focus-visible:ring-white dark:focus-visible:ring-offset-[#111]"
             >
               {isSending ? (
                 <>
-                  <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent dark:border-black dark:border-t-transparent" />
-                  发送中...
+                  <span className="inline-block h-4 w-4 animate-spin motion-reduce:animate-none rounded-full border-2 border-white border-t-transparent dark:border-black dark:border-t-transparent" />
+                  发送中…
                 </>
               ) : (
                 "🚀 发送测试交易"
               )}
             </button>
 
-            {txHash && (
+            {txHash ? (
               <div className="flex flex-col gap-1 rounded-lg bg-green-50 p-3 dark:bg-green-900/20">
                 <span className="text-xs font-medium text-green-700 dark:text-green-400">
                   ✅ 交易成功！
@@ -160,25 +160,25 @@ export default function AAWalletPage() {
                   href={getExplorerUrl("tx", txHash)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="break-all font-mono text-xs text-green-600 underline hover:text-green-800 dark:text-green-400 dark:hover:text-green-300"
+                  className="break-all font-mono text-xs text-green-600 underline hover:text-green-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 dark:text-green-400 dark:hover:text-green-300"
                 >
                   {txHash}
                 </a>
               </div>
-            )}
+            ) : null}
 
-            {txError && (
+            {txError ? (
               <div className="rounded-lg bg-red-50 p-3 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400">
                 ❌ 交易失败: {txError}
               </div>
-            )}
+            ) : null}
           </section>
-        )}
+        ) : null}
 
         {/* Back link */}
         <Link
           href="/"
-          className="self-start text-sm text-[#999] underline transition-colors hover:text-black dark:hover:text-white"
+          className="self-start text-sm text-[#999] underline transition-colors hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 dark:hover:text-white"
         >
           ← 返回首页
         </Link>
